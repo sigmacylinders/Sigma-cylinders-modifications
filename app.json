@@ -1,0 +1,32 @@
+{
+  "id": "ffb9ee15-8b76-4fc5-9c59-40b6923aaace",
+  "name": "Sigma cylinders modifications",
+  "publisher": "RJ Group Publisher",
+  "version": "27.0.0.15",
+    "brief": "",
+    "privacyStatement": "",
+    "description": "",
+    "EULA": "",
+    "help": "",
+    "url": "",
+    "dependencies": [
+    ],
+    "screenshots": [],
+    "platform": "1.0.0.0",
+   "application": "26.0.0.0",
+    "idRanges": [
+        {
+            "from": 76100,
+            "to": 76199
+        }
+    ],
+    "resourceExposurePolicy": {
+        "allowDebugging": true,
+        "allowDownloadingSource": false,
+        "includeSourceInSymbolFile": false
+    },
+    "runtime": "15.0",
+    "features": [
+        "NoImplicitWith"
+    ]
+  }
