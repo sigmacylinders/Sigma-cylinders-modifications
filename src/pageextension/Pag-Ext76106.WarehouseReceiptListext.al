@@ -14,6 +14,16 @@ pageextension 76106 "Warehouse Receipt List ext" extends "Warehouse Receipts"
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the Source No. field.', Comment = '%';
             }
+            field("Vendor Name"; Rec."Vendor Name")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Vendor Name field.', Comment = '%';
+            }
+            field("Vendor Invoice No."; Rec."Vendor Invoice No.")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Vendor Invoice No. field.', Comment = '%';
+            }
         }
         addfirst(factboxes)
         {

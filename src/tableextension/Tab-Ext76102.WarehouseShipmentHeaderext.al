@@ -19,6 +19,11 @@ tableextension 76102 "Warehouse Shipment Header ext" extends "Warehouse Shipment
             FieldClass = FlowField;
             CalcFormula = lookup("Warehouse Shipment Line"."Source No." where("No." = field("No.")));
         }
+        field(76102; "Parent Transfer Order #"; Code[50])
+        {
+            DataClassification = ToBeClassified;
+        }
+
     }
 
     keys

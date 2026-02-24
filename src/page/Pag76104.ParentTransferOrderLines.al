@@ -4,6 +4,7 @@ page 76104 "Parent Transfer Order Lines"
     SourceTable = "Parent Transfer Order Line";
     Caption = 'Lines';
     ApplicationArea = All;
+    AutoSplitKey = true;
 
     layout
     {
@@ -17,6 +18,7 @@ page 76104 "Parent Transfer Order Lines"
                 }
                 field("Parent Transfer Order #"; Rec."Parent Transfer Order #")
                 {
+                    Editable = false;
                     ToolTip = 'Specifies the value of the Parent Transfer Order # field.', Comment = '%';
                 }
                 field("Line No."; Rec."Line No.")
@@ -42,7 +44,7 @@ page 76104 "Parent Transfer Order Lines"
                 {
                     ToolTip = 'Specifies the value of the Week field.', Comment = '%';
                 }
-                field("Description Arabic"; Rec."Description Arabic")
+                field("Arabic Description"; Rec."Arabic Description")
                 {
                     ToolTip = 'Specifies the value of the Description Arabic field.', Comment = '%';
                 }
@@ -50,6 +52,10 @@ page 76104 "Parent Transfer Order Lines"
                 field("Item No."; Rec."Item No.")
                 {
                     ApplicationArea = All;
+                }
+                field("Item No.2"; Rec."Item No.2")
+                {
+                    ToolTip = 'Specifies the value of the Item No.2 field.', Comment = '%';
                 }
 
                 field(Description; Rec.Description)
@@ -68,20 +74,31 @@ page 76104 "Parent Transfer Order Lines"
                 field("MO Qty"; Rec."MO Qty")
                 {
                     ApplicationArea = All;
+                    Editable = false;
                 }
 
                 field("Qty to Be Transferred"; Rec."Qty to Be Transferred")
                 {
                     ApplicationArea = All;
                 }
+                field("Qty Transferred"; Rec."Qty Transferred")
+                {
+                    ToolTip = 'Specifies the value of the Qty Transferred field.', Comment = '%';
+                    Editable = false;
+                }
 
                 field("Remaining Quantity"; Rec."Remaining Quantity")
                 {
                     ApplicationArea = All;
+                    Editable = false;
                 }
                 field("Over Qty"; Rec."Over Qty")
                 {
                     ToolTip = 'Specifies the value of the Over Qty field.', Comment = '%';
+                }
+                field("Date"; Rec."Date")
+                {
+                    ToolTip = 'Specifies the value of the Date field.', Comment = '%';
                 }
 
                 field("Transfer From Location"; Rec."Transfer From Location")
@@ -120,10 +137,12 @@ page 76104 "Parent Transfer Order Lines"
                 field("Fully Processed"; Rec."Fully Processed")
                 {
                     ApplicationArea = All;
+                    Enabled = false;
                 }
                 field("Partially Processed"; Rec."Partially Processed")
                 {
                     ToolTip = 'Specifies the value of the Processed field.', Comment = '%';
+                    Enabled = false;
                 }
             }
         }

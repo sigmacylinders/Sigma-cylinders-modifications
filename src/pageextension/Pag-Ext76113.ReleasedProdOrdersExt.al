@@ -12,32 +12,7 @@ pageextension 76113 "Released ProdOrders Ext" extends "Released Production Order
         }
     }
 
-  /*  actions
-    {
-        addafter("Change &Status")
-        {
-            action("Fill the Week No Field")
-            {
-                ApplicationArea = All;
-                Image = Import;
-                trigger OnAction()
-                var
-                    ProductionOrder: Record "Production Order";
-                begin
-                    Clear(ProductionOrder);
-                    ProductionOrder.SetRange(Status, ProductionOrder.Status::Released);
-                    if ProductionOrder.FindSet() then
-                        repeat
-                            if ProductionOrder.SystemCreatedAt <> 0DT then begin
-                                ProductionOrder."Week No." := 'WEEK ' + format(Date2DWY(DT2Date(ProductionOrder.SystemCreatedAt), 2));
-                                ProductionOrder.Modify();
-                            end
 
-                        until ProductionOrder.Next() = 0;
-                end;
-            }
-        }
-    }*/
 
 
     var

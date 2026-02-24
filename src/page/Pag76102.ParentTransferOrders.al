@@ -5,6 +5,7 @@ page 76102 "Parent Transfer Orders"
     Caption = 'Parent Transfer Orders';
     ApplicationArea = All;
     UsageCategory = Lists;
+    CardPageId = "Parent Transfer Order Card";
 
     layout
     {
@@ -24,6 +25,31 @@ page 76102 "Parent Transfer Orders"
 
                 field("Created By"; Rec."Created By")
                 {
+                    ApplicationArea = All;
+                }
+                field("Shortcut Dimension 1 Code"; Rec."Shortcut Dimension 1 Code")
+                {
+                    ToolTip = 'Specifies the value of the LOB field.', Comment = '%';
+                    ApplicationArea = All;
+                }
+                field("Shortcut Dimension 2 Code"; Rec."Shortcut Dimension 2 Code")
+                {
+                    ToolTip = 'Specifies the value of the Branch field.', Comment = '%';
+                    ApplicationArea = All;
+                }
+                field("Shortcut Dimension 3 Code"; Rec."Shortcut Dimension 3 Code")
+                {
+                    ToolTip = 'Specifies the value of the Dept field.', Comment = '%';
+                    ApplicationArea = All;
+                }
+                field("Shortcut Dimension 4 Code"; Rec."Shortcut Dimension 4 Code")
+                {
+                    ToolTip = 'Specifies the value of the SubDept field.', Comment = '%';
+                    ApplicationArea = All;
+                }
+                field("Employee Dimension Code"; Rec."Employee Dimension Code")
+                {
+                    ToolTip = 'Specifies the value of the Employee field.', Comment = '%';
                     ApplicationArea = All;
                 }
             }

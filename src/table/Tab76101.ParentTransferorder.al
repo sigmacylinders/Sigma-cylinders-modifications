@@ -39,11 +39,11 @@ table 76101 "Parent Transfer order"
             Blocked = const(false)
         );
 
-            // trigger OnValidate()
-            // begin
+            trigger OnValidate()
+            begin
 
-            //     Rec.ValidateShortcutDimCode(1, "Shortcut Dimension 1 Code");
-            // end;
+                Validatedimensiononthelines(1, Rec."Shortcut Dimension 1 Code");
+            end;
         }
 
         field(6; "Shortcut Dimension 2 Code"; Code[20])
@@ -57,10 +57,10 @@ table 76101 "Parent Transfer order"
             Blocked = const(false)
         );
 
-            // trigger OnValidate()
-            // begin
-            //     Rec.ValidateShortcutDimCode(2, "Shortcut Dimension 2 Code");
-            // end;
+            trigger OnValidate()
+            begin
+                Validatedimensiononthelines(2, "Shortcut Dimension 2 Code");
+            end;
         }
 
         field(7; "Shortcut Dimension 3 Code"; Code[20])
@@ -73,10 +73,10 @@ table 76101 "Parent Transfer order"
             Blocked = const(false)
         );
 
-            // trigger OnValidate()
-            // begin
-            //     Rec.ValidateShortcutDimCode(3, "Shortcut Dimension 3 Code");
-            // end;
+            trigger OnValidate()
+            begin
+                Validatedimensiononthelines(3, "Shortcut Dimension 3 Code");
+            end;
         }
 
         field(8; "Shortcut Dimension 4 Code"; Code[20])
@@ -89,10 +89,10 @@ table 76101 "Parent Transfer order"
             Blocked = const(false)
         );
 
-            // trigger OnValidate()
-            // begin
-            //     Rec.ValidateShortcutDimCode(4, "Shortcut Dimension 4 Code");
-            // end;
+            trigger OnValidate()
+            begin
+                Validatedimensiononthelines(4, "Shortcut Dimension 4 Code");
+            end;
         }
 
 
@@ -256,6 +256,55 @@ table 76101 "Parent Transfer order"
         // OnBeforeConfirmUpdateAllLineDim(Rec, xRec, NewParentDimSetID, OldParentDimSetID, Confirmed, IsHandled);
         if not IsHandled then
             Confirmed := Confirm(Text064);
+    end;
+
+    local procedure Validatedimensiononthelines(Dimensionnumber: Integer; dimensionvaluecode: code[50])
+    var
+        Parenttransferlines: Record "Parent Transfer Order Line";
+    begin
+        Clear(Parenttransferlines);
+        Parenttransferlines.SetRange("Parent Transfer Order #", Rec."Parent Transfer Order #");
+        case DimensionNumber of
+            1:
+                begin
+                    // Logic for Dimension 1
+                    Parenttransferlines.ModifyAll("Shortcut Dimension 1 Code", dimensionvaluecode);
+                end;
+            2:
+                begin
+                    // Logic for Dimension 2
+                    Parenttransferlines.ModifyAll("Shortcut Dimension 2 Code", dimensionvaluecode);
+                end;
+            3:
+                begin
+                    // Logic for Dimension 3
+                    Parenttransferlines.ModifyAll("Shortcut Dimension 3 Code", dimensionvaluecode);
+                end;
+            4:
+                begin
+                    // Logic for Dimension 4
+                    Parenttransferlines.ModifyAll("Shortcut Dimension 4 Code", dimensionvaluecode);
+                end;
+            5:
+                begin
+                    // Logic for Dimension 5
+                end;
+            6:
+                begin
+                    // Logic for Dimension 6
+                end;
+            7:
+                begin
+                    // Logic for Dimension 7
+                end;
+            8:
+                begin
+                    // Logic for Dimension 8
+                end;
+            else
+                Error('Invalid Dimension Number: %1', DimensionNumber);
+        end;
+
     end;
 
     var

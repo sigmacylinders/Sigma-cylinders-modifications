@@ -27,6 +27,8 @@ table 76102 "Parent Transfer Order Line"
         field(4; Select; Boolean)
         {
             Caption = 'Select';
+            ToolTip = 'Specifies the lines you want to transfer to the Transfer order Module';
+
         }
 
         field(5; "MO #"; Code[20])
@@ -39,7 +41,7 @@ table 76102 "Parent Transfer Order Line"
             Caption = 'BOM';
         }
 
-        field(7; Week; Integer)
+        field(7; Week; Code[50])
         {
             Caption = 'Week';
         }
@@ -60,9 +62,9 @@ table 76102 "Parent Transfer Order Line"
             Caption = 'Description';
         }
 
-        field(11; "Description Arabic"; Text[100])
+        field(11; "Arabic Description"; Text[100])
         {
-            Caption = 'Description Arabic';
+            Caption = 'Arabic Description';
         }
 
         field(12; "Quantity per"; Decimal)
@@ -115,7 +117,7 @@ table 76102 "Parent Transfer Order Line"
 
         field(20; "Fully Processed"; Boolean)
         {
-            Caption = 'Processed';
+            Caption = 'Fully Processed';
         }
 
         field(21; "Shortcut Dimension 1 Code"; Code[20])
@@ -184,10 +186,7 @@ table 76102 "Parent Transfer Order Line"
             //     Rec.ValidateShortcutDimCode(4, "Shortcut Dimension 4 Code");
             // end;
         }
-        field(26; "Partially Processed"; Boolean)
-        {
-            Caption = 'Processed';
-        }
+
 
 
         field(25; "Employee Dimension Code"; Code[20])
@@ -196,6 +195,25 @@ table 76102 "Parent Transfer Order Line"
             TableRelation = "Dimension Value".Code
         where("Dimension Code" = const('EMPLOYEE'));
             DataClassification = CustomerContent;
+        }
+        field(26; "Partially Processed"; Boolean)
+        {
+            Caption = 'Partially Processed';
+        }
+        field(27; "Item No.2"; code[20])
+        {
+            //DataClassification = ToBeClassified;
+            FieldClass = FlowField;
+            CalcFormula = lookup(Item."No. 2" where("No." = field("Item No.")));
+
+        }
+        field(28; "Date"; Date)
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(29; "Qty Transferred"; Decimal)
+        {
+            DataClassification = ToBeClassified;
         }
         field(480; "Dimension Set ID"; Integer)
         {

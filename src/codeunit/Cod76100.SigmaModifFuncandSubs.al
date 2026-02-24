@@ -84,6 +84,35 @@ codeunit 76100 "Sigma Modif. Func and Subs"
         end;
     end;
 
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"TransferOrder-Post Shipment", 'OnBeforeInsertTransShptHeader', '', false, false)]
+    local procedure OnBeforeInsertTransShptHeader(var TransShptHeader: Record "Transfer Shipment Header"; TransHeader: Record "Transfer Header"; CommitIsSuppressed: Boolean; PreviewMode: Boolean)
+    begin
+        TransShptHeader."Parent Transfer Order #" := TransHeader."Parent Transfer Order #";
+    end;
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"TransferOrder-Post Receipt", OnBeforeInsertTransRcptHeader, '', false, false)]
+    local procedure OnBeforeInsertTransRcptHeader(var TransRcptHeader: Record "Transfer Receipt Header"; TransHeader: Record "Transfer Header"; CommitIsSuppressed: Boolean; PreviewMode: Boolean; var Handled: Boolean)
+    begin
+        TransRcptHeader."Parent Transfer Order #" := TransHeader."Parent Transfer Order #";
+    end;
+
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"TransferOrder-Post Shipment", 'OnAfterInsertTransShptLine', '', false, false)]
+    local procedure OnAfterInsertTransShptLine(var TransShptLine: Record "Transfer Shipment Line"; TransLine: Record "Transfer Line"; CommitIsSuppressed: Boolean; PreviewMode: Boolean; TransShptHeader: Record "Transfer Shipment Header")
+    begin
+        TransShptLine."Parent Transfer Order #" := TransLine."Parent Transfer Order #";
+        TransShptLine."Parent Transfer Order line #" := TransLine."Parent Transfer Order line #";
+
+    end;
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"TransferOrder-Post Receipt", OnAfterInsertTransRcptLine, '', false, false)]
+    local procedure OnAfterInsertTransRcptLine(var TransRcptLine: Record "Transfer Receipt Line"; TransLine: Record "Transfer Line"; CommitIsSuppressed: Boolean; PreviewMode: Boolean; TransferReceiptHeader: Record "Transfer Receipt Header")
+    begin
+        TransRcptLine."Parent Transfer Order #" := TransLine."Parent Transfer Order #";
+        TransRcptLine."Parent Transfer Order line #" := TransLine."Parent Transfer Order line #";
+    end;
+
+
     var
         myInt: Integer;
 }

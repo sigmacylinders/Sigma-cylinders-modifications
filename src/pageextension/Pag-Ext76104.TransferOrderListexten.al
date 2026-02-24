@@ -3,6 +3,14 @@ pageextension 76104 "Transfer Order List exten" extends "Transfer Orders"
     layout
     {
         // Add changes to page layout here
+        addafter("Transfer-to Code")
+        {
+            field("Parent Transfer Order #"; Rec."Parent Transfer Order #")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Parent Transfer Order # field.', Comment = '%';
+            }
+        }
     }
 
     actions
