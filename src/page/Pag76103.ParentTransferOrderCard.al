@@ -86,8 +86,51 @@ page 76103 "Parent Transfer Order Card"
                     Message('Transfer Orders created successfully for %1.', Rec."Parent Transfer Order #");
                 end;
             }
+            action("Select all")
+            {
+                Image = Select;
+                ApplicationArea = All;
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedOnly = true;
+                trigger OnAction()
+                begin
+                    selectAll();
+
+                end;
+            }
+            action("Remove all selection")
+            {
+                Image = RemoveLine;
+                ApplicationArea = All;
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedOnly = true;
+                trigger OnAction()
+                begin
+                    UnselectAll();
+
+                end;
+            }
         }
     }
+    procedure selectAll()
+    var
+        PTOLines: Record "Parent Transfer Order Line";
+    begin
+        Clear(PTOLines);
+        PTOLines.SetRange("Parent Transfer Order #", Rec."Parent Transfer Order #");
+        PTOLines.ModifyAll(Select, true);
+    end;
+
+    procedure UnselectAll()
+    var
+        PTOLines: Record "Parent Transfer Order Line";
+    begin
+        Clear(PTOLines);
+        PTOLines.SetRange("Parent Transfer Order #", Rec."Parent Transfer Order #");
+        PTOLines.ModifyAll(Select, false);
+    end;
 
     procedure CreateTransferOrders(ParentTransferOrderNo: Code[20])
     var
@@ -119,6 +162,7 @@ page 76103 "Parent Transfer Order Card"
                 PTOLine.TestField("Transfer From Location");
                 PTOLine.TestField("Transfer From Location");
                 PTOLine.TestField(Date);
+                PTOLine.TestField("Prod. Order No.");
                 // 🔁 New combination → new Transfer Header
                 Clear(TransferHeaderFind);
                 TransferHeaderFind.SetRange("Parent Transfer Order #", Rec."Parent Transfer Order #");
@@ -126,6 +170,7 @@ page 76103 "Parent Transfer Order Card"
                 TransferHeaderFind.SetRange("Transfer-to Code", PTOLine."Transfer To");
                 TransferHeaderFind.SetRange("Posting Date", PTOLine.Date);
                 TransferHeaderFind.SetRange(Status, TransferHeaderFind.Status::Open);
+                TransferHeaderFind.SetRange("Production Order No.", PTOLine."Prod. Order No.");
                 if NOT TransferHeaderFind.FindFirst() then begin
 
                     TransferHeader.Init();
@@ -141,10 +186,8 @@ page 76103 "Parent Transfer Order Card"
                     TransferHeader."Transfer-to Code" := PTOLine."Transfer To";
                     TransferHeader."In-Transit Code" := 'WH-TR-001';
                     TransferHeader."Posting Date" := PTOLine.Date;
-                    TransferHeader."Production Order No." := PTOLine."MO #";
+                    TransferHeader."Production Order No." := PTOLine."Prod. Order No.";
                     TransferHeader."Production Order Status" := "Production Order Status"::Released;
-
-
 
                     TransferHeader.Insert(true);
 
@@ -165,23 +208,31 @@ page 76103 "Parent Transfer Order Card"
                 TransferLine.Validate(Quantity, PTOLine."Qty to Be Transferred" + PTOLine."Over Qty");
                 TransferLine."Parent Transfer Order #" := PTOLine."Parent Transfer Order #";
                 TransferLine."Parent Transfer Order line #" := PTOLine."Line No.";
-                TransferLine.ValidateShortcutDimCode(1, PTOLine."Shortcut Dimension 1 Code");
-                TransferLine.ValidateShortcutDimCode(2, PTOLine."Shortcut Dimension 2 Code");
-                TransferLine.ValidateShortcutDimCode(3, PTOLine."Shortcut Dimension 3 Code");
-                TransferLine.ValidateShortcutDimCode(4, PTOLine."Shortcut Dimension 4 Code");
+                TransferLine."Prod. Order No." := PTOLine."Prod. Order No.";
+                TransferLine."Prod. Order Line No." := PTOLine."Prod. Order Line No.";
+                TransferLine."Prod. Order Component Line No." := PTOLine."Prod. Order Component Line No.";
+
+                IF PTOLine."Shortcut Dimension 1 Code" <> '' then
+                    TransferLine.ValidateShortcutDimCode(1, PTOLine."Shortcut Dimension 1 Code");
+                IF PTOLine."Shortcut Dimension 2 Code" <> '' then
+                    TransferLine.ValidateShortcutDimCode(2, PTOLine."Shortcut Dimension 2 Code");
+                IF PTOLine."Shortcut Dimension 3 Code" <> '' then
+                    TransferLine.ValidateShortcutDimCode(3, PTOLine."Shortcut Dimension 3 Code");
+                IF PTOLine."Shortcut Dimension 4 Code" <> '' then
+                    TransferLine.ValidateShortcutDimCode(4, PTOLine."Shortcut Dimension 4 Code");
                 TransferLine.Insert(true);
 
                 // ✅ Mark Parent Line as Processed
                 PTOLine."Qty Transferred" := PTOLine."Qty Transferred" + PTOLine."Qty to Be Transferred";
-                IF PTOLine."Qty Transferred" < PTOLine."MO Qty" then begin
+                IF PTOLine."Qty Transferred" < PTOLine."Production order Qty" then begin
 
                     PTOLine."partially Processed" := true;
 
 
 
-                    PTOLine."Remaining Quantity" := PTOLine."MO Qty" - PTOLine."Qty Transferred";
+                    PTOLine."Remaining Quantity" := PTOLine."Production order Qty" - PTOLine."Qty Transferred";
 
-                    PTOLine."Qty to Be Transferred" := PTOLine."MO Qty" - PTOLine."Qty Transferred";
+                    PTOLine."Qty to Be Transferred" := PTOLine."Production order Qty" - PTOLine."Qty Transferred";
                     ;
                     PTOLine.Modify();
                 end else begin

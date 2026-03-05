@@ -12,6 +12,24 @@ tableextension 76107 "Transfer Line SCM exten" extends "Transfer Line"
         {
             DataClassification = ToBeClassified;
         }
+        field(76102; "Prod. Order No."; Code[20])
+        {
+            Caption = 'Prod. Order No.';
+        }
+        field(76103; "Prod. Order Line No."; Integer)
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(76104; "Prod. Order Component Line No."; Integer)
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(76105; "Item No. 2"; Code[20])
+        {
+            Caption = 'Item No. 2';
+            FieldClass = FlowField;
+            CalcFormula = lookup(Item."No. 2" where("No." = field("Item No.")));
+        }
     }
 
     keys

@@ -12,9 +12,9 @@ page 76104 "Parent Transfer Order Lines"
         {
             repeater(Lines)
             {
-                field("MO Description"; Rec."MO Description")
+                field("Production order Description"; Rec."Production order Description")
                 {
-                    ToolTip = 'Specifies the value of the MO Description field.', Comment = '%';
+                    ToolTip = 'Specifies the value of the Production order Description field.', Comment = '%';
                 }
                 field("Parent Transfer Order #"; Rec."Parent Transfer Order #")
                 {
@@ -32,9 +32,17 @@ page 76104 "Parent Transfer Order Lines"
                     ApplicationArea = All;
                 }
 
-                field("MO #"; Rec."MO #")
+                field("Prod. Order No."; Rec."Prod. Order No.")
                 {
                     ApplicationArea = All;
+                }
+                field("Prod. Order Line No."; Rec."Prod. Order Line No.")
+                {
+                    ToolTip = 'Specifies the value of the Prod. Order Line No. field.', Comment = '%';
+                }
+                field("Prod. Order Component Line No."; Rec."Prod. Order Component Line No.")
+                {
+                    ToolTip = 'Specifies the value of the Prod. Order Component Line No. field.', Comment = '%';
                 }
                 field(BOM; Rec.BOM)
                 {
@@ -71,7 +79,7 @@ page 76104 "Parent Transfer Order Lines"
                     ApplicationArea = All;
                 }
 
-                field("MO Qty"; Rec."MO Qty")
+                field("Production order Qty"; Rec."Production order Qty")
                 {
                     ApplicationArea = All;
                     Editable = false;

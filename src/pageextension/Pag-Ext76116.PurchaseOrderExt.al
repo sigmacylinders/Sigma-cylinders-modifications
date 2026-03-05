@@ -6,6 +6,14 @@ pageextension 76116 "Purchase Order Ext" extends "Purchase Order"
         {
             ShowMandatory = true;
         }
+        addafter("Buy-from Vendor Name"
+       )
+        {
+            field("Cash Supplier Name"; Rec."Cash Supplier Name")
+            {
+                ApplicationArea = All;
+            }
+        }
     }
 
     trigger OnQueryClosePage(CloseAction: Action): Boolean

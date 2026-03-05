@@ -7,6 +7,17 @@ tableextension 76108 "Posted Transfer Shipment" extends "Transfer Shipment Heade
         {
             DataClassification = ToBeClassified;
         }
+        field(76101; "Production Order No."; Code[20])
+        {
+        }
+        field(76102; "Production Order Status"; Enum Microsoft.Manufacturing.Document."Production Order Status")
+        {
+        }
+        field(76103; "Prod. Order No."; Code[20])
+        {
+            Caption = 'Prod. Order No.';
+        }
+
     }
 
     keys

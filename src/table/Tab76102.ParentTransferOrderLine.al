@@ -19,9 +19,9 @@ table 76102 "Parent Transfer Order Line"
         }
 
         // 📦 Line Details
-        field(3; "MO Description"; Text[100])
+        field(3; "Production order Description"; Text[100])
         {
-            Caption = 'MO Description';
+            Caption = 'Production order Description';
         }
 
         field(4; Select; Boolean)
@@ -31,9 +31,9 @@ table 76102 "Parent Transfer Order Line"
 
         }
 
-        field(5; "MO #"; Code[20])
+        field(5; "Prod. Order No."; Code[20])
         {
-            Caption = 'MO #';
+            Caption = 'Prod. Order No.';
         }
 
         field(6; BOM; Code[20])
@@ -79,9 +79,9 @@ table 76102 "Parent Transfer Order Line"
             TableRelation = "Unit of Measure";
         }
 
-        field(14; "MO Qty"; Decimal)
+        field(14; "Production order Qty"; Decimal)
         {
-            Caption = 'MO Qty';
+            Caption = 'Production order Qty';
             DecimalPlaces = 0 : 5;
         }
 
@@ -212,6 +212,14 @@ table 76102 "Parent Transfer Order Line"
             DataClassification = ToBeClassified;
         }
         field(29; "Qty Transferred"; Decimal)
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(30; "Prod. Order Line No."; Integer)
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(31; "Prod. Order Component Line No."; Integer)
         {
             DataClassification = ToBeClassified;
         }

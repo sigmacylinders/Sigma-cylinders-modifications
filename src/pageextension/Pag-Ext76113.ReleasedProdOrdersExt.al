@@ -12,7 +12,35 @@ pageextension 76113 "Released ProdOrders Ext" extends "Released Production Order
         }
     }
 
+    actions
+    {
+        addafter("Change &Status")
+        {
+            action("Send to Parent Transfer order")
+            {
+                ApplicationArea = All;
+                Image = Import;
+                trigger OnAction()
+                var
+                    ProdOrder: Record "Production Order";
+                    Sigma_Modif_Func: Codeunit "Sigma Modif. Func and Subs";
+                begin
+                    // Get selected records from the page
+                    CurrPage.SetSelectionFilter(ProdOrder);
 
+                    if ProdOrder.IsEmpty() then begin
+                        Message('No records selected.');
+                        exit;
+                    end;
+                    Sigma_Modif_Func.CreateParentTransferorderSelection(ProdOrder);
+
+                end;
+
+
+
+            }
+        }
+    }
 
 
     var
