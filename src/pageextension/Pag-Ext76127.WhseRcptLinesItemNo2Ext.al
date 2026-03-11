@@ -10,5 +10,6 @@ pageextension 76127 "WhseRcptLines ItemNo2 Ext" extends "WHSE. Receipt Subform"
                 ToolTip = 'Shows the alternate item number (Item."No. 2") for this receipt line.';
             }
         }
+
     }
 }

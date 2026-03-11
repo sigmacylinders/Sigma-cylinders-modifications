@@ -14,6 +14,11 @@ pageextension 76108 "Warehouse Shipment ext" extends "Warehouse Shipment"
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the Source No. field.', Comment = '%';
             }
+            field("Customer Name"; Rec."Customer Name")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Customer Name field.', Comment = '%';
+            }
         }
         addfirst(factboxes)
         {

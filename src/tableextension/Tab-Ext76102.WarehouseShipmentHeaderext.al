@@ -23,6 +23,12 @@ tableextension 76102 "Warehouse Shipment Header ext" extends "Warehouse Shipment
         {
             DataClassification = ToBeClassified;
         }
+        field(76103; "Customer Name"; Text[100])
+        {
+            Caption = 'Customer Name';
+            FieldClass = FlowField;
+            CalcFormula = lookup("Sales Header"."Sell-to Customer Name" where("No." = field("Source No."), "Document Type" = const(Order)));
+        }
 
     }
 
