@@ -17,5 +17,7 @@ permissionset 76100 GeneratedPermission
         page "Parent Transfer Orders" = X,
         tabledata "Item Subcategory Code" = RIMD,
         table "Item Subcategory Code" = X,
-        page "Item Subcategory Codes" = X;
+        page "Item Subcategory Codes" = X,
+        codeunit "Price List Import Mgt." = X,
+        page "Delete Transfer Orders" = X;
 }

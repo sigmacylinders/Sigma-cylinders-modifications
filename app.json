@@ -2,14 +2,14 @@
   "id": "ffb9ee15-8b76-4fc5-9c59-40b6923aaace",
   "name": "Sigma cylinders modifications",
   "publisher": "RJ Group Publisher",
-  "version": "27.0.0.30",
+  "version": "27.0.0.41",
     "brief": "",
     "privacyStatement": "",
     "description": "",
     "EULA": "",
     "help": "",
     "url": "",
-    "dependencies": 
+    "dependencies":
     [
         {
         "id": "baafde42-e1e6-4ebb-8bd7-bb381ea83838",

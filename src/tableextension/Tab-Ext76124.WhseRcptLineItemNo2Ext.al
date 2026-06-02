@@ -9,4 +9,5 @@ tableextension 76124 "WhseRcptLine ItemNo2 Ext" extends "Warehouse Receipt Line"
             CalcFormula = lookup(Item."No. 2" where("No." = field("Item No.")));
         }
     }
+
 }

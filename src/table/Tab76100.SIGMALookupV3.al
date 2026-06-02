@@ -9,7 +9,7 @@ table 76100 "SIGMA Lookup - V3"
         field(1; "Type"; Option)
         {
             DataClassification = ToBeClassified;
-            OptionMembers = " ","WEEKNO";
+            OptionMembers = " ","WEEKNO","Vendor Catgeory";
 
         }
         field(2; "Code"; code[50])

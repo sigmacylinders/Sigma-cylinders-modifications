@@ -9,4 +9,6 @@ tableextension 76125 "PostedWhseRcptLine ItemNo2 Ext" extends "Posted Whse. Rece
             CalcFormula = lookup(Item."No. 2" where("No." = field("Item No.")));
         }
     }
+
+
 }

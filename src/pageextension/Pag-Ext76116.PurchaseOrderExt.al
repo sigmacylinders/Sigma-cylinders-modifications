@@ -14,7 +14,28 @@ pageextension 76116 "Purchase Order Ext" extends "Purchase Order"
                 ApplicationArea = All;
             }
         }
+        addafter("Assigned User ID")
+        {
+            field("Creation Date"; Rec.SystemCreatedAt)
+            {
+                ApplicationArea = All;
+                Editable = false;
+            }
+            field("Created By"; UserName)
+            {
+                ApplicationArea = All;
+                Editable = false;
+            }
+        }
     }
+
+    trigger OnAfterGetRecord()
+    var
+    begin
+        IF User.Get(Rec.SystemCreatedBy) then begin
+            UserName := User."User Name";
+        end;
+    end;
 
     trigger OnQueryClosePage(CloseAction: Action): Boolean
     var
@@ -35,4 +56,8 @@ pageextension 76116 "Purchase Order Ext" extends "Purchase Order"
 
 
     end;
+
+    var
+        User: Record User;
+        UserName: Code[20];
 }

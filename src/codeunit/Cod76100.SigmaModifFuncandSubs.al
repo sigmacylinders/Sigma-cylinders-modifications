@@ -275,6 +275,19 @@ codeunit 76100 "Sigma Modif. Func and Subs"
     end;
 
 
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Gen. Jnl.-Post Line", 'OnAfterInitGLEntry', '', false, false)]
+    local procedure TransferForeignServiceToGLEntry(var GLEntry: Record "G/L Entry"; GenJournalLine: Record "Gen. Journal Line")
+    begin
+        GLEntry."Foreign Service" := GenJournalLine."Foreign Service";
+    end;
+
+    // [EventSubscriber(ObjectType::Codeunit, Codeunit::"Gen. Jnl.-Post", 'OnAfterPostJournalLine', '', false, false)]
+    // local procedure TransferForeignServiceToPostedJnlLine(var PostedGenJournalLine: Record "Posted Gen. Journal Line"; GenJournalLine: Record "Gen. Journal Line")
+    // begin
+    //     PostedGenJournalLine."Foreign Service" := GenJournalLine."Foreign Service";
+    //     PostedGenJournalLine.Modify();
+    // end;
+
 
 
 
