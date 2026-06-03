@@ -11,6 +11,14 @@ pageextension 76104 "Transfer Order List exten" extends "Transfer Orders"
                 ToolTip = 'Specifies the value of the Parent Transfer Order # field.', Comment = '%';
             }
         }
+        addafter("No.")
+        {
+            field("Posting Date"; Rec."Posting Date")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the posting date of the transfer order.';
+            }
+        }
     }
 
     actions
@@ -19,7 +27,6 @@ pageextension 76104 "Transfer Order List exten" extends "Transfer Orders"
 
         addafter("Create &Whse. Receipt")
         {
-
             action("Create Whse. S&hipment(Selection)")
             {
                 AccessByPermission = TableData "Warehouse Shipment Header" = R;

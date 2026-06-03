@@ -29,6 +29,11 @@ tableextension 76102 "Warehouse Shipment Header ext" extends "Warehouse Shipment
             FieldClass = FlowField;
             CalcFormula = lookup("Sales Header"."Sell-to Customer Name" where("No." = field("Source No."), "Document Type" = const(Order)));
         }
+        field(76104; "In-Transit Location"; Boolean)
+        {
+            Caption = 'In-Transit Location';
+            DataClassification = ToBeClassified;
+        }
 
     }
 

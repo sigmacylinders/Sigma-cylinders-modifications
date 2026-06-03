@@ -44,6 +44,19 @@ pageextension 76106 "Warehouse Receipt List ext" extends "Warehouse Receipts"
         // Add changes to page actions here
     }
 
+    trigger OnOpenPage()
+    var
+        UserSetup: Record "User Setup";
+    begin
+        if UserSetup.Get(UserId()) then
+            if UserSetup."Whse. Receipt Source Document" <> "Warehouse Activity Source Document"::" " then begin
+                Rec.FilterGroup(2);
+                Rec.SetRange("Source Document", UserSetup."Whse. Receipt Source Document");
+                rec.FilterGroup(0);
+            end;
+
+    end;
+
     var
         myInt: Integer;
 }

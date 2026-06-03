@@ -290,6 +290,43 @@ codeunit 76100 "Sigma Modif. Func and Subs"
 
 
 
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Whse.-Post Shipment", 'OnAfterPostWhseShipment', '', false, false)]
+    local procedure OnAfterPostWhseShipment(var WarehouseShipmentHeader: Record "Warehouse Shipment Header"; SuppressCommit: Boolean; var IsHandled: Boolean)
+    var
+
+        GetSourceDocInbound: Codeunit "Get Source Doc. Inbound";
+        TransferOrderHeader: Record "Transfer Header";
+        ReleaseTransferDoc: Codeunit "Release Transfer Document";
+        PostedwhseShipmentHeader: Record "Posted Whse. Shipment Header";
+        postedWarehouseShipmentLine: Record "Posted Whse. Shipment Line";
+        TransferOrder: record "Transfer Header";
+    begin
+        //  message('Warehouse Shipment %1 has been posted. You can subscribe to this event to perform additional actions after posting a warehouse shipment.', WarehouseShipmentHeader."No.");
+        PostedwhseShipmentHeader.SetCurrentKey("No.");
+        clear(PostedwhseShipmentHeader);
+        PostedwhseShipmentHeader.SetRange("Whse. Shipment No.", WarehouseShipmentHeader."No.");
+        IF PostedwhseShipmentHeader.FindFirst() then begin
+            clear(postedWarehouseShipmentLine);
+            postedWarehouseShipmentLine.SetRange("No.", PostedwhseShipmentHeader."No.");
+            if postedWarehouseShipmentLine.FindFirst() then begin
+                //  IF postedWarehouseShipmentLine."Source Document" <> postedWarehouseShipmentLine."Source Document"::"Outbound Transfer" then begin
+                clear(TransferOrder);
+                IF TransferOrder.Get(postedWarehouseShipmentLine."Source No.") then begin//only for transfer orders
+                    IF TransferOrder."Transfer-to Code" = 'FC1-WP-PRD' then begin//only to the production warehouse do the below
+                        if not Confirm('The shipment has been posted.\Do you want Navigate to the Transfer order to create a Warehouse Receipt?', true) then
+                            exit;
+
+                        Page.Run(page::"Transfer Order", TransferOrder);
+                    end;
+                end;
+            end;
+
+
+        end;
+
+    END;
+
+
 
     var
         myInt: Integer;

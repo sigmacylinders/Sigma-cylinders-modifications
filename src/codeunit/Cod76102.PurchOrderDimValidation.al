@@ -47,4 +47,6 @@ codeunit 76102 "Purch. Order Dim. Validation"
         IF NOT DimSetEntry.FindFirst() then
             Error('Shortcut Dimension %1 (%2) must be filled in on the Purchase Order before it can be released.', DimNo, DimCode);
     end;
+
+
 }
