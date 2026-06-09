@@ -328,6 +328,60 @@ codeunit 76100 "Sigma Modif. Func and Subs"
 
 
 
+    procedure CreateTransferOrderFromFinishedPO(var FinishedProdOrder: Record "Production Order")
+    var
+        TransferHeader: Record "Transfer Header";
+        TransferLine: Record "Transfer Line";
+        InventorySetup: Record "Inventory Setup";
+        Location: Record Location;
+        LocationList: Page "Location List";
+        NoSeriesMgt: Codeunit "No. Series";
+        TransferOrderNo: Code[20];
+        TransferToLocation: Code[10];
+    begin
+        if FinishedProdOrder.FindSet() then
+            repeat
+                FinishedProdOrder.TestField("Source No.");
+                FinishedProdOrder.TestField("Location Code");
+                FinishedProdOrder.TestField(Quantity);
+
+                //    LocationList.LookupMode(true);
+                //  if LocationList.RunModal() <> Action::LookupOK then
+                //      exit;
+                //    LocationList.GetRecord(Location);
+                //   TransferToLocation := Location.Code;
+
+                //  if FinishedProdOrder."Location Code" = TransferToLocation then
+                //     Error('Transfer-from and Transfer-to location cannot be the same.');
+
+                InventorySetup.Get();
+                InventorySetup.TestField("Transfer Order Nos.");
+
+                TransferHeader.Init();
+                TransferOrderNo := NoSeriesMgt.GetNextNo(InventorySetup."Transfer Order Nos.", WorkDate(), true);
+                TransferHeader."No." := TransferOrderNo;
+                TransferHeader.Validate("Transfer-from Code", FinishedProdOrder."Location Code");
+                TransferHeader.Validate("Transfer-to Code", 'WH-SL-FG');
+                TransferHeader.Validate("In-Transit Code", 'WH-TR-001');
+                TransferHeader.Validate("Posting Date", FinishedProdOrder."Ending Date");
+                TransferHeader."Direct Transfer" := false;
+                TransferHeader."Production Order No." := FinishedProdOrder."No.";
+                TransferHeader."Production Order Status" := "Production Order Status"::Finished;
+                TransferHeader.Insert(true);
+
+                TransferLine.Init();
+                TransferLine."Document No." := TransferOrderNo;
+                TransferLine."Line No." := 10000;
+                TransferLine.Validate("Item No.", FinishedProdOrder."Source No.");
+                TransferLine.Validate(Quantity, FinishedProdOrder.Quantity);
+                TransferLine.Insert(true);
+
+                FinishedProdOrder."Transfer Created" := true;
+                FinishedProdOrder.Modify();
+            until FinishedProdOrder.Next() = 0;
+        Page.Run(Page::"Transfer Orders", TransferHeader);
+    end;
+
     var
         myInt: Integer;
 }

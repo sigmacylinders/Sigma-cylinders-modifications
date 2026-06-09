@@ -6,6 +6,7 @@ codeunit 76102 "Purch. Order Dim. Validation"
         GLSetup: Record "General Ledger Setup";
         PurchSetup: Record "Purchases & Payables Setup";
     begin
+
         if PurchaseHeader."Document Type" <> PurchaseHeader."Document Type"::Order then
             exit;
 
@@ -34,6 +35,7 @@ codeunit 76102 "Purch. Order Dim. Validation"
         if PurchSetup."Dimension 5 Mandatory on PO" then
             CheckDimSetEntry(PurchaseHeader."Dimension Set ID", GLSetup."Shortcut Dimension 8 Code", 8);
     end;
+
 
     local procedure CheckDimSetEntry(DimSetID: Integer; DimCode: Code[20]; DimNo: Integer)
     var

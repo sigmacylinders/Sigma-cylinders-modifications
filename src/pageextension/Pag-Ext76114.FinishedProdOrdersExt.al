@@ -12,6 +12,37 @@ pageextension 76114 "Finished ProdOrders Ext" extends "Finished Production Order
         }
     }
 
+
+    actions
+    {
+        addafter(Dimensions)
+        {
+            action("Create Transfer Order")
+            {
+                ApplicationArea = All;
+                Caption = 'Create Transfer Order';
+                Image = TransferOrder;
+                ToolTip = 'Creates a transfer order for each selected finished production order.';
+                trigger OnAction()
+                var
+                    SelectedProdOrders: Record "Production Order";
+                    SigmaModifFunc: Codeunit "Sigma Modif. Func and Subs";
+                begin
+                    CurrPage.SetSelectionFilter(SelectedProdOrders);
+                    // message(Format(SelectedProdOrders.Count) + ' record(s) selected.');
+                    if SelectedProdOrders.IsEmpty() then begin
+                        Message('No records selected.');
+                        exit;
+                    end;
+                    SelectedProdOrders.SetRange("transfer Created", false);
+                    SigmaModifFunc.CreateTransferOrderFromFinishedPO(SelectedProdOrders);
+
+
+                end;
+            }
+        }
+    }
+
     var
         WeekNo: Integer;
 
