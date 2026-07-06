@@ -239,6 +239,12 @@ table 76102 "Parent Transfer Order Line"
                 DimMgt.UpdateGlobalDimFromDimSetID("Dimension Set ID", "Shortcut Dimension 1 Code", "Shortcut Dimension 2 Code");
             end;
         }
+        field(32; "Engineering Code"; code[100])
+        {
+            //DataClassification = ToBeClassified;
+            FieldClass = FlowField;
+            calcformula = lookup(Item."Engineering Code" where("No." = field("Item No.")));
+        }
     }
     keys
     {

@@ -10,6 +10,12 @@ tableextension 76100 "Prod. Order Line extension" extends "Prod. Order Line"
             CalcFormula = lookup(Item."No. 2" where("No." = field("Item No.")));
 
         }
+        field(76101; "Engineering Code"; code[100])
+        {
+            //DataClassification = ToBeClassified;
+            FieldClass = FlowField;
+            calcformula = lookup(Item."Engineering Code" where("No." = field("Item No.")));
+        }
     }
 
     keys
