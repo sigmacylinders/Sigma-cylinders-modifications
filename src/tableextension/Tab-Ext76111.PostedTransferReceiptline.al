@@ -29,6 +29,12 @@ tableextension 76111 "Posted Transfer Receipt line" extends "Transfer Receipt Li
             FieldClass = FlowField;
             CalcFormula = lookup(Item."No. 2" where("No." = field("Item No.")));
         }
+        field(76106; "Item Engineering Code"; Code[100])
+        {
+            Caption = 'Item Engineering Code';
+            FieldClass = FlowField;
+            CalcFormula = lookup(Item."Engineering Code" where("No." = field("Item No.")));
+        }
     }
 
     keys

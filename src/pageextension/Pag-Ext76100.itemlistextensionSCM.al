@@ -12,6 +12,22 @@ pageextension 76100 "item list extension SCM" extends "Item List"
         //     }
         // }
 
+        addafter(description)
+        {
+            field(Classification; Rec.Classification)
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the procurement and usage classification of the item: Active, New, Preferred, Restricted, Phased Out, Obsolete, Inactive, or Archived.';
+            }
+            field("Sort Code"; Rec."Sort Code")
+            {
+                ApplicationArea = All;
+            }
+            field("Engineering Code"; Rec."Engineering Code")
+            {
+                ApplicationArea = All;
+            }
+        }
     }
 
     actions

@@ -10,6 +10,12 @@ pageextension 76132 "SalesQuoteSubform ItemNo2 Ext" extends "Sales Quote Subform
                 ToolTip = 'Alternate item number from the Item Card for this sales quote line.';
                 Visible = true;
             }
+            field("Item Engineering Code"; Rec."Engineering Code")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Engineering Code from the Item Card for this sales quote line.';
+                Visible = true;
+            }
         }
     }
 }

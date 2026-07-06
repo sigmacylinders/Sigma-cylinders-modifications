@@ -30,6 +30,12 @@ tableextension 76107 "Transfer Line SCM exten" extends "Transfer Line"
             FieldClass = FlowField;
             CalcFormula = lookup(Item."No. 2" where("No." = field("Item No.")));
         }
+        field(76106; "Item Engineering Code"; Code[100])
+        {
+            Caption = 'Item Engineering Code';
+            FieldClass = FlowField;
+            CalcFormula = lookup(Item."Engineering Code" where("No." = field("Item No.")));
+        }
     }
 
     keys

@@ -10,6 +10,12 @@ pageextension 76133 "PurchQuoteSubform ItemNo2 Ext" extends "Purchase Quote Subf
                 ToolTip = 'Alternate item number from the Item Card for this purchase quote line.';
                 Visible = true;
             }
+            field("Item Engineering Code"; Rec."Engineering Code")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Engineering Code from the Item Card for this purchase quote line.';
+                Visible = true;
+            }
         }
     }
 }

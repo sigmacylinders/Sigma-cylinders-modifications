@@ -9,6 +9,11 @@ pageextension 76128 "PostedWhseRcptLines Ext" extends "Posted Whse. Receipt Subf
                 ApplicationArea = All;
                 ToolTip = 'Shows the alternate item number (Item."No. 2") for this posted receipt line.';
             }
+            field("Item Engineering Code"; Rec."Item Engineering Code")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Shows the Engineering Code (Item."Engineering Code") for this posted receipt line.';
+            }
         }
     }
 }

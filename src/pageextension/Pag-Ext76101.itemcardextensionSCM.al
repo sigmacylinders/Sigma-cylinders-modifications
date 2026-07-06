@@ -13,8 +13,21 @@ pageextension 76101 "item card extension SCM" extends "Item card"
         // }
 
 
-        addafter("Item Category Code")
+        addafter(Description)
         {
+            field(Classification; Rec.Classification)
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the procurement and usage classification of the item: Active, New, Preferred, Restricted, Phased Out, Obsolete, Inactive, or Archived.';
+            }
+            field("Sort Code"; Rec."Sort Code")
+            {
+                ApplicationArea = All;
+            }
+            field("Engineering Code"; Rec."Engineering Code")
+            {
+                ApplicationArea = All;
+            }
             group("Item Subcategories")
             {
                 field("Category 2 Code"; Rec."Category 2 Code")

@@ -10,6 +10,11 @@ pageextension 76129 "ILE Page ItemNo2 Ext" extends "Item Ledger Entries"
                 ApplicationArea = All;
                 ToolTip = 'Alternate item number from the Item Card for the selected entry.';
             }
+            field("Item Engineering Code"; Rec."Item Engineering Code")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Engineering Code from the Item Card for the selected entry.';
+            }
         }
 
         addafter("Document No.")

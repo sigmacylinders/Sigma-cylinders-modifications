@@ -10,6 +10,14 @@ tableextension 76120 "Sales Line Ext" extends "Sales Line"
             FieldClass = FlowField;
             CalcFormula = Lookup(Item."No. 2" where("No." = FIELD("No.")));
         }
+        field(76103; "Engineering Code"; Code[100])
+        {
+            Caption = 'Engineering Code';
+            Editable = false;
+            // FlowField to pull the Engineering Code from the Item table
+            FieldClass = FlowField;
+            CalcFormula = Lookup(Item."Engineering Code" where("No." = FIELD("No.")));
+        }
         field(76101; "Warehouse shipment Qty to Ship"; Decimal)//platinum
         {
             //      DataClassification = ToBeClassified;
