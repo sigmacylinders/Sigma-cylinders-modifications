@@ -10,6 +10,11 @@ pageextension 76102 "Released Prod. Order Lines ex" extends "Released Prod. Orde
                 ApplicationArea = All;
                 ToolTip = 'Specifies the value of the Item No.2 field.', Comment = '%';
             }
+            field("Engineering Code"; Rec."Engineering Code")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Engineering Code field.', Comment = '%';
+            }
         }
     }
 

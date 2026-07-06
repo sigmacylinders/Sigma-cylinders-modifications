@@ -10,6 +10,20 @@ pageextension 76110 "Released ProdOrder Ext" extends "Released Production Order"
                 Caption = 'Week No.';
             }
         }
+        addafter("Source No.")
+        {
+            field("Item No. 2"; Rec."Item No. 2")
+            {
+                ApplicationArea = All;
+                Caption = 'Item No. 2';
+                ToolTip = 'Shows the Item No. 2 (Item."No. 2") for this production order.';
+            }
+            field("Item Engineering Code"; Rec."Item Engineering Code")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Item Engineering Code field.', Comment = '%';
+            }
+        }
     }
 
     actions

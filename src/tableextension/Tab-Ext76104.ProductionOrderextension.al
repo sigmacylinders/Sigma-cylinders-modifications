@@ -8,6 +8,18 @@ tableextension 76104 "Production Order extension" extends "Production Order"
             DataClassification = ToBeClassified;
             TableRelation = "SIGMA Lookup - V3".Code where(Type = const(WEEKNO));
         }
+        field(76101; "Item No. 2"; Code[20])
+        {
+            Caption = 'Item No. 2';
+            FieldClass = FlowField;
+            CalcFormula = lookup(Item."No. 2" where("No." = field("Source No.")));
+        }
+        field(76102; "Item Engineering Code"; Code[100])
+        {
+            Caption = 'Item Engineering Code';
+            FieldClass = FlowField;
+            CalcFormula = lookup(Item."Engineering Code" where("No." = field("Source No.")));
+        }
     }
 
     keys
