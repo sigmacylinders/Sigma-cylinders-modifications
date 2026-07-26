@@ -28,6 +28,11 @@ pageextension 76101 "item card extension SCM" extends "Item card"
             {
                 ApplicationArea = All;
             }
+            field("Cylinder Category"; Rec."Cylinder Category")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the cylinder category of the item.';
+            }
             group("Item Subcategories")
             {
                 field("Category 2 Code"; Rec."Category 2 Code")

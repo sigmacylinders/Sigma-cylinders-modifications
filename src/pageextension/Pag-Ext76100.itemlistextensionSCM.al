@@ -27,6 +27,11 @@ pageextension 76100 "item list extension SCM" extends "Item List"
             {
                 ApplicationArea = All;
             }
+            field("Cylinder Category"; Rec."Cylinder Category")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the cylinder category of the item.';
+            }
         }
     }
 

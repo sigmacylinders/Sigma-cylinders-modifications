@@ -28,6 +28,13 @@ tableextension 76101 "item table extension" extends item
             Caption = 'Engineering Code';
             DataClassification = CustomerContent;
         }
+        field(76108; "Cylinder Category"; Code[50])
+        {
+            Caption = 'Cylinder Category';
+            DataClassification = CustomerContent;
+            TableRelation = "SIGMA Lookup - V3".Code
+                WHERE(Type = CONST("Cylinder Category"));
+        }
 
 
     }
