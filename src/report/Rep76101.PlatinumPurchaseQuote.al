@@ -1,10 +1,12 @@
 report 76101 "Platinum Purchase Quote"
 {
     DefaultLayout = RDLC;
-    RDLCLayout = './Reports Layouts/PlatinumPurchaseQuote.rdl';
+    RDLCLayout = 'src\Reports Layouts\PlatinumPurchaseQuote.rdl';
     Caption = 'Purchase';
     PreviewMode = PrintLayout;
     WordMergeDataItem = "Purchase Header";
+    usagecategory = ReportsAndAnalysis;
+    ApplicationArea = All;
 
     dataset
     {
