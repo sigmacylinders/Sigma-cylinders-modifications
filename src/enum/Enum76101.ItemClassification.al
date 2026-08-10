@@ -6,10 +6,11 @@ enum 76101 "Item Classification"
     {
         Caption = ' ';
     }
-    value(1; "Active")
+    value(1; "Certified")
     {
-        Caption = 'Active';
+        Caption = 'Certified';
     }
+
     value(2; "New")
     {
         Caption = 'New';

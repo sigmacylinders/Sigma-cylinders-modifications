@@ -33,6 +33,9 @@ pageextension 76101 "item card extension SCM" extends "Item card"
                 ApplicationArea = All;
                 ToolTip = 'Specifies the cylinder category of the item.';
             }
+
+
+
             group("Item Subcategories")
             {
                 field("Category 2 Code"; Rec."Category 2 Code")
@@ -59,6 +62,14 @@ pageextension 76101 "item card extension SCM" extends "Item card"
                 {
                     ApplicationArea = All;
                 }
+            }
+        }
+        addafter("Scrap %")
+        {
+            field(Scrap; Rec.Scrap)
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Scrap field.', Comment = '%';
             }
         }
     }

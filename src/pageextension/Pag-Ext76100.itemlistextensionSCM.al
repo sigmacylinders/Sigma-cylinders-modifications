@@ -32,6 +32,12 @@ pageextension 76100 "item list extension SCM" extends "Item List"
                 ApplicationArea = All;
                 ToolTip = 'Specifies the cylinder category of the item.';
             }
+            field(Scrap; Rec.Scrap)
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Scrap field.', Comment = '%';
+            }
+
         }
     }
 

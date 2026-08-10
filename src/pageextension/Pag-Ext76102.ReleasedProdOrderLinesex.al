@@ -16,6 +16,14 @@ pageextension 76102 "Released Prod. Order Lines ex" extends "Released Prod. Orde
                 ToolTip = 'Specifies the value of the Engineering Code field.', Comment = '%';
             }
         }
+        addafter("Variant Code")
+        {
+            field("Variant Code 2"; Rec."Variant Code 2")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Variant Code 2 field.', Comment = '%';
+            }
+        }
     }
 
     actions

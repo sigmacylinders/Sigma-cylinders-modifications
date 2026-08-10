@@ -15,6 +15,12 @@ tableextension 76138 "Prod. Order Component exten" extends "Prod. Order Componen
             FieldClass = FlowField;
             CalcFormula = lookup(Item."Engineering Code" where("No." = field("Item No.")));
         }
+        field(76102; "Variant Code 2"; Code[50])
+        {
+            //      DataClassification = ToBeClassified;
+            fieldclass = FlowField;
+            CalcFormula = lookup("Item Variant"."Variant Code" where("Item No." = field("Item No."), "Code" = field("Variant Code")));
+        }
     }
 
     keys

@@ -35,6 +35,10 @@ tableextension 76101 "item table extension" extends item
             TableRelation = "SIGMA Lookup - V3".Code
                 WHERE(Type = CONST("Cylinder Category"));
         }
+        field(76109; "Scrap"; Boolean)
+        {
+            DataClassification = ToBeClassified;
+        }
 
 
     }
